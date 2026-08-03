@@ -1,6 +1,6 @@
 # BIOTEST — sajt za Zavod za laboratorijsku dijagnostiku
 
-Prezentacioni, informativni sajt za BIOTEST laboratoriju (6 lokacija — Novi Sad i Novi Bečej). Bez online zakazivanja termina i bez portala za preuzimanje rezultata — samo katalog analiza, kalkulator cene/vremena, lokacije, popusti i osnovne informacije.
+Prezentacioni, informativni sajt za BIOTEST laboratoriju (6 lokacija — Novi Sad i Novi Bečej). Bez online zakazivanja termina i bez portala za preuzimanje rezultata — samo katalog analiza, kalkulator cene/vremena, lokacije, usluge na terenu, popusti i osnovne informacije.
 
 Statičan sajt (obične HTML/CSS/JS stranice, bez build koraka, bez servera) — jednostavan za održavanje za jednog developera.
 
@@ -8,7 +8,8 @@ Statičan sajt (obične HTML/CSS/JS stranice, bez build koraka, bez servera) —
 
 - `index.html` — Početna (hero, promocija, zašto Biotest, teaser bloga)
 - `katalog.html` — Katalog analiza: pretraga + filter po kategoriji + ugrađeni kalkulator cene i vremena
-- `lokacije.html` — Mapa svih lokacija (Leaflet + OpenStreetMap) + kartice po lokaciji
+- `lokacije.html` — Mapa svih 6 lokacija (Leaflet + OpenStreetMap) + kartice po lokaciji
+- `teren.html` — Usluge na terenu (kućne posete za vađenje krvi/brisa) — kako funkcioniše, za koga, kontakt za dogovor termina
 - `popusti.html` — Preuzimanje popust koda (ime + kontakt → jedinstveni kod na ekranu)
 - `blog.html` — Lista blog objava (kartice sa slikom-bannerom, kategorijom i kratkim opisom)
 - `clanak.html` — Pojedinačni blog članak, učitava se preko `?slug=` iz URL-a
@@ -95,7 +96,7 @@ Sve objave su u `data/blog-posts.json`, kao niz objekata poređanih od najnovije
 
 Kod koji posetilac dobija na `popusti.html` je **sam sebi dovoljan za proveru** — sadrži 6 nasumičnih cifara i 2-cifreni kontrolni broj izračunat iz njih (`assets/js/discount.js`). Kalkulator proverava kod istim izračunom, pa nije potrebna nikakva baza ili server da bi se utvrdilo da li je kod validno izdat sa ovog sajta. Trenutno svaki validan kod nosi fiksni popust od 10% (`DISCOUNT_PERCENT` u `discount.js`).
 
-Ime i kontakt koje posetilac unese čuvaju se lokalno u browseru (`localStorage`, ključ `biotest_discount_leads`) — to je samo lokalna beleška tog uređaja, laboratorija ih trenutno ne prima centralno. Ako ti zatreba da svi preuzeti kodovi/kontakti stignu na jedno mesto (npr. za praćenje ili marketing), najlakša opcija je **Firebase Firestore na besplatnom Spark planu** (isti pristup kao u `legacy-odmorpro` aplikaciji) — javi ako ti to zatreba, dodaje se bez menjanja postojeće logike provere koda.
+Ime i kontakt koje posetilac unese čuvaju se lokalno u browseru (`localStorage`, ključ `biotest_discount_leads`) — to je samo lokalna beleška tog uređaja, laboratorija ih trenutno ne prima centralno. Ako ti zatreba da svi preuzeti kodovi/kontakti stignu na jedno mesto (npr. za praćenje ili marketing), najlakša opcija je **Firebase Firestore na besplatnom Spark planu** — javi ako ti to zatreba, dodaje se bez menjanja postojeće logike provere koda.
 
 ## Mapa (Lokacije)
 
