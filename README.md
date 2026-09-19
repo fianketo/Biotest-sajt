@@ -4,10 +4,12 @@ Prezentacioni, informativni sajt za BIOTEST laboratoriju (6 lokacija — Novi Sa
 
 Statičan sajt (obične HTML/CSS/JS stranice, bez build koraka, bez servera) — jednostavan za održavanje za jednog developera.
 
+> Napomena: prethodna aplikacija koja je bila u ovom repozitorijumu (OdmorPro — evidencija odsustva) premeštena je u `/legacy-odmorpro/` da bi napravila mesto za ovaj sajt. Njen README je i dalje unutar tog foldera.
+
 ## Struktura sajta
 
 - `index.html` — Početna (hero, promocija, zašto Biotest, teaser bloga)
-- `katalog.html` — Katalog analiza: pretraga + filter po kategoriji + ugrađeni kalkulator cene i vremena
+- `katalog.html` — Cenovnik (naziv stranice u navigaciji): pretraga + filter po kategoriji + ugrađeni kalkulator cene i vremena
 - `lokacije.html` — Mapa svih 6 lokacija (Leaflet + OpenStreetMap) + kartice po lokaciji
 - `teren.html` — Usluge na terenu (kućne posete za vađenje krvi/brisa) — kako funkcioniše, za koga, kontakt za dogovor termina
 - `popusti.html` — Katalog akcija (Temu-stil kartice + korpa + kod na email, vidi sekciju "Promocije, korpa i kod na email" ispod) i opšti 10% popust kod (ime + kontakt → jedinstveni kod na ekranu, bez baze)
@@ -111,7 +113,7 @@ Napomena: ovaj sistem (fiksnih 10%, samoprovera bez baze) je nezavisan od novije
 
 Pored gornjeg opšteg 10% koda (koji ne zahteva bazu), `popusti.html` ima i **katalog akcija u stilu online prodavnice** — kartice sa slikom, starom/novom cenom, dugme "Dodaj u korpu", korpa sa ukupnom uštedom, i na kraju forma (ime + email) koja generiše **jedinstven kod porudžbine** i šalje ga na email. Osoblje u laboratoriji taj kod pronalazi na `provera-koda.html` (ručnim unosom ili skeniranjem QR koda kamerom) i vidi tačno šta je poručeno i koliki je popust. Akcije se dodaju/uređuju na `admin.html`, koji nije u glavnoj navigaciji (link mu ne stoji nigde na sajtu) — otvara se direktno preko URL-a.
 
-Sve troje (`popusti.html` korpa, `admin.html`, `provera-koda.html`) rade preko **Firebase Firestore** (baza) i **Firebase Authentication** (login za admin/osoblje). Dok `assets/js/firebase-config.js` ima prazne vrednosti, sve tri stranice to prepoznaju i prikazuju jasnu poruku "nije podešeno" — stari 10% kod iznad i dalje radi nezavisno od ovoga, jer njemu baza ne treba.
+Sve troje (`popusti.html` korpa, `admin.html`, `provera-koda.html`) rade preko **Firebase Firestore** (baza) i **Firebase Authentication** (login za admin/osoblje), isti pristup kao stara `legacy-odmorpro` aplikacija. Dok `assets/js/firebase-config.js` ima prazne vrednosti, sve tri stranice to prepoznaju i prikazuju jasnu poruku "nije podešeno" — stari 10% kod iznad i dalje radi nezavisno od ovoga, jer njemu baza ne treba.
 
 ### 1. Napravi Firebase projekat
 
@@ -224,4 +226,4 @@ Nema build koraka. Za razvoj, pokreni bilo koji statički server iz root foldera
 
 ## Postavljanje na GitHub Pages
 
-**Settings → Pages → Deploy from a branch → `main` / `(root)`**. `index.html` je početna stranica na domenu.
+Isto kao i ranije za OdmorPro: **Settings → Pages → Deploy from a branch → `main` / `(root)`**. Pošto je `index.html` sada BIOTEST sajt, on postaje početna stranica na domenu; stara OdmorPro aplikacija ostaje dostupna na `/legacy-odmorpro/index.html` ako je i dalje negde u upotrebi.
